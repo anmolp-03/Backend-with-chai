@@ -1,6 +1,7 @@
-const express = require('express')
+import express from 'express'
+
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 const githubdata = {
   "login": "anmolp-03",
@@ -52,6 +53,30 @@ app.get('/login', (req,res) =>{
 
 app.get('/github', (req, res) => {
     res.json(githubdata)
+})
+
+// get a list of 3 jokes
+
+app.get('/api/jokes', (req, res) => {
+    const jokes = [
+      {
+        "id": 1,
+        "title": 'a joke',
+        "content": "Why don't scientists trust atoms? Because they make up everything.",
+      },
+      {
+        "id": 2,
+        "title": 'another joke',
+        "content": "Why don't eggs tell jokes? They'd crack each other up.",
+      },
+      {
+        "id": 3,
+        "title": 'third joke',
+        "content": "Why did the tomato turn red? Because it saw the salad dressing.",
+      }
+    ]
+
+    res.send(jokes);
 })
 
 app.listen(port, () => {
